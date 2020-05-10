@@ -10,8 +10,6 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -143,7 +141,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Container wird am Anfang gefüllt
-    void default_settings(){
+    public void default_settings(){
         container.setAlignment(Pos.CENTER);
         container.getChildren().add(armed=new Label(""));
         container.getChildren().add(activation=new Label(""));
@@ -156,7 +154,7 @@ public class Main extends Application {
         container.getChildren().add(bb);
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Farbe der Beschriftung und Text wird an Zustand angepasst
-    void is_on(){
+    public void is_on(){
         if (is_armed==false) {                                         //Ausgeschalten
             armed.setText("NOT Armed");
             armed.setStyle("-fx-font-size: 20; -fx-text-fill: red; -fx-font-family: 'Britannic Bold'");
@@ -188,13 +186,13 @@ public class Main extends Application {
             }
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Tonausgabe, normalerweise Nachricht an Arduino, welcher Alarm auslöst
-    void alarm(Boolean real)  {
+    public void alarm(Boolean real)  {
             if(is_armed!=false){
                 //..........................................................................
                 String musicFile = "Alarm.mp3";     // For example
-                Media sound = new Media(new File(musicFile).toURI().toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                mediaPlayer.play();
+                //Media sound = new Media(new File(musicFile).toURI().toString());
+               // MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                //mediaPlayer.play();
                 //...........................................................................
 
                 File f=new File("List.txt");
@@ -227,7 +225,7 @@ public class Main extends Application {
             }
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Passwort wird verschlüsselt und mit einer beriets verschlüsselten Vorlage
-    Boolean password_check() throws FileNotFoundException {                                                           // verglichen
+    public Boolean password_check() throws FileNotFoundException {                                                           // verglichen
         TextInputDialog dialog=new TextInputDialog();
         dialog.setTitle("Sicherheitsabfrage");
         dialog.setHeaderText("Passwort wird benötigt");
@@ -244,7 +242,7 @@ public class Main extends Application {
 
         try {
 
-            if(s.equals(br.readLine())==true) {    //Passwort vergleichen
+            if(s.equals(encrypt(br.readLine()))==true) {    //Passwort vergleichen
                 return true;
             }
             else
@@ -255,7 +253,7 @@ public class Main extends Application {
         }
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Die Eingabe wird verschlüsselt
-    String encrypt(String s){
+    public String encrypt(String s){
         String s2="";
         char c[]=s.toCharArray();           //Aus String wird ein Char Array
         for (int i=0; i<s.length();i++){
