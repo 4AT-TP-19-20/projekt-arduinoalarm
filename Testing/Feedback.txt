@@ -1,0 +1,22 @@
+Java-Code (GUI):
+	- Fehler werden jeweils nur gefangen um deren StackTrace zu printen!
+	- Refactoring
+		- In Files aufteilen
+		- OOP
+		- Duplicate Code
+		- Größere Code Teile in Funktionen aufteilen
+	- Dateien "yeet.txt" und "Alarm.mp3" sind nicht beim Programm eingebunden -> FileNotFoundException
+	- Passwort muss manuell in der Text-File abgespeichert werden
+		- Settings Button?
+			- Passwort ändern
+			- Automatisierung des Alarm (aktivieren/deaktivieren)
+			- Ordner für die Datenspeicherung (List.txt)
+	- Graphischer Hinweis auf Einbruch/Testalarm
+		- Handy Nachricht?
+	- Es wurde keine Schnittstelle zwischen Arduino und Java-Code hergestellt
+	
+C-Code (Arduino):
+	- Refactoring
+		- Funktionen
+		- while True Schleife ohne break
+		
